@@ -33,24 +33,22 @@
           <h4>Aggiungi un film o una serie TV</h4>
         </div>
         <div class="titleSection">
-          <input type="text" id="newMovieTitle" placeholder="Titolo" />
-       
-          <input type="text" id="newMovieYear" placeholder="Anno" />
-       
-          <input type="text" id="newMoviePlatform" placeholder="Dove vederlo" />
-        
-          <select>
+          <form id="formMovie">
+            <input type="text" id="newMovieTitle" placeholder="Titolo" />
+            <input type="text" id="newMovieYear" placeholder="Anno" />
+            <input type="text" id="newMoviePlatform" placeholder="Dove vederlo" />
+          
+          <select id="aggiungiFilm">
             <option value=" "></option>
             <option value="watch">Da vedere</option>
             <option value="watched">Visto</option>
-            <option value="started">Iniziato</option>
-            <option value="avoid">Non consigliato</option>
           </select>
           </div>
           
           <div>
-            <button type="submit" class="addMovieBtn">Aggiungi</button>
+            <button type="submit" id="aggiungiBottone" class="addMovieBtn">Aggiungi</button>
           </div>
+          </form>
         </div>
       </section>
 
@@ -59,17 +57,17 @@
         <div>
           <input
             type="text"
-            id="searchTitle"
+            id="inputSearch"
             placeholder="Cerca per titolo o anno"
           />
        
-          <select>
+          <select id="selectWatched">
             <option value=" "></option>
             <option value="visto">Visto</option>
             <option value="daVedere">Da vedere</option>
           </select>
        
-          <select>
+          <select id="selectOrder">
             <option value=" "></option>
             <option value="crescente">Anno crescente</option>
             <option value="decrescente">Anno decrescente</option>

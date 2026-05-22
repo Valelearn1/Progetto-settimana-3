@@ -58,20 +58,7 @@ let movies = [
   },
 ];
 
-let filtroVisto = "";
-let ordineAnno = "";
 let cerca = "";
-
-const darkModeButton = document.querySelector("#darkModeButton");
-
-darkModeButton.addEventListener("click", (event) => {
-  const temaScuro = document.body.classList.toggle("scuro");
-  if (temaScuro) {
-    darkModeButton.textContent = "Tema chiaro";
-  } else {
-    darkModeButton.textContent = "Tema scuro";
-  }
-});
 
 /* RENDER()
    Una sola funzione che ridipinge la lista. A ogni chiamata:
@@ -85,93 +72,51 @@ darkModeButton.addEventListener("click", (event) => {
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+const selectWatched = document.querySelector("#selectWatched");
+const selectOrder = document.querySelector("#selectOrder");
+const inputSearch = document.querySelector("#inputSearch");
+
 const render = () => {
   const cards = document.getElementById("cards");
-  movies.forEach((movie) => {
-    const para = document.createElement("p");
-    para.innerText = movie.titolo;
-    cards.appendChild(para);
-  });
+  cards.innerHTML = ""; // svuota il DOM
+  const valoreFiltro = selectWatched.value; // valore attuale del filtro (quando viene chiamata la funzione render)
+  const ordineFiltro = selectOrder.value;
+  const searchFiltro = inputSearch.value;
+  movies
+    .filter((movie) => {
+      if (valoreFiltro === "daVedere") {
+        return movie.visto === false;
+      } else if (valoreFiltro === " ") {
+        return true; // voglio che mostri tutti i film
+      } else {
+        return movie.visto === true;
+      }
+    })
+    .filter((movie) => {
+      if (searchFiltro === "") {
+        return true;
+      } else {
+        return movie.titolo.toLowerCase().includes(searchFiltro.toLowerCase());
+      }
+    })
+    .sort((movieA, movieB) => {
+      if (ordineFiltro === "crescente") {
+        return movieA.anno - movieB.anno;
+      } else if (ordineFiltro === " ") {
+        return 0;
+      } else {
+        return movieB.anno - movieA.anno;
+      }
+    })
+    .forEach((movie) => {
+      // per ogni film, crea un div e aggiungi titolo e anno, e poi aggiungi il div a cards (padre)
+      const div = document.createElement("div");
+      div.innerText = movie.titolo + movie.anno;
+      cards.appendChild(div);
+    });
 };
 
 render();
-
-// const listaFilm = document.getElementById("listaFilm");
-// const stats = document.getElementById("stats");
-// const notificaDiv = document.getElementById("notifica");
-// const form = document.getElementById("filmForm");
-// const titoloInput = document.getElementById("titolo");
-// const piattaformaInput = document.getElementById("piattaforma");
-// const annoInput = document.getElementById("anno");
-// const categoriaInput = document.getElementById("categoria");
-// const searchInput = document.getElementById("search");
-// const filtroSelect = document.getElementById("filtro");
-// const ordineSelect = document.getElementById("ordine");
-// const darkButton = document.getElementById("darkButton");
-// const exportButton = document.getElementById("exportButton");
-// const importInput = document.getElementById("importInput");
-
-// const render = () => {
-//   let risultati = [...film];
-//   risultati = risultati.filter((f) =>
-//     f.titolo.toLowerCase().includes(cerca.toLowerCase()),
-//   );
-//   if (filtroVisto === "visti") {
-//     risultati = risultati.filter((f) => f.visto === true);
-//   } else if (filtroVisto === "non visti") {
-//     risultati = risultati.filter((f) => f.visto === false);
-//   }
-
-//   // per ordinare
-//   if (ordineAnno === "crescente") {
-//     risultati.sort((a, b) => a.anno - b.anno);
-//   } else if (ordineAnno === "decrescente") {
-//     risultati.sort((a, b) => b.anno - a.anno);
-//   }
-
-//   listaFilm.innerHTML = ""; // per svuotare il DOM
-
-//   risultati.forEach((f) => {
-//     const card = document.createElement("div");
-//     card.innerHTML = `
-//       <h3 class="titolo-film">
-//         ${f.titolo}
-//       </h3>
-
-//       <p>${f.piattaforma}</p>
-
-//       <p>${f.anno}</p>
-
-//       <p>
-//         ${f.visto ? "Visto" : "Non visto"}
-//       </p>
-
-//       <button
-//         class="delete-btn"
-//         data-id="${f.id}"
-//       >
-//         Elimina
-//       </button>
-
-//       <button
-//         class="edit-btn"
-//         data-id="${f.id}"
-//       >
-//         Modifica
-//       </button>`;
-
-//     listaFilm.appendChild(card);
-//   });
-//   const totale = film.length;
-//   const visti = film.filter((f) => f.visto).length;
-//   const nonVisti = film.filter((f) => !f.visto).length;
-
-//   stats.innerHTML = `
-//     <p>Totali: ${totale}</p>
-//     <p>Visti: ${visti}</p>
-//     <p>Non visti: ${nonVisti}</p>
-//   `;
-// };
 
 /* FORM CON VALIDAZIONE
    addEventListener("submit") sul form.
@@ -183,32 +128,41 @@ render();
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
-// const filmForm = document.getElementById("filmForm");
-// const titoloInput = document.getElementById("titolo");
-// const piattaformaInput = document.getElementById("piattaforma");
-// const annoInput = document.getElementById("anno");
+const aggiungiBottone = document.querySelector("#aggiungiBottone");
+const aggiungiFilm = document.querySelector("#aggiungiFilm");
+const newMovieTitle = document.querySelector("#newMovieTitle");
+const newMovieYear = document.querySelector("#newMovieYear");
+const newMoviePlatform = document.querySelector("#newMoviePlatform");
+const formMovie = document.querySelector("#formMovie");
 
-// filmForm.addEventListener("submit", (event) => {
-//   event.preventDefault(); // per bloccare il refresh
-//   const titolo = titoloInput.value.trim();
-//   const piattaforma = piattaformaInput.value.trim();
-//   const anno = annoInput.value.trim();
-//   if (!titolo || !piattaforma || !anno) {
-//     alert("Compila tutti i campi");
-//     return;
-//   }
-
-//   film.push({
-//     id: Date.now(),
-//     titolo: titolo,
-//     piattaforma: piattaforma,
-//     anno: anno,
-//     visto: false,
-//   });
-//   filmForm.reset(); // per resettare form
-
-//   render();
-// });
+formMovie.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (aggiungiFilm.value.trim() === "") {
+    alert("Campo vuoto");
+    return;
+  }
+  if (newMovieTitle.value.trim() === "") {
+    alert("Campo vuoto");
+    return;
+  }
+  if (newMovieYear.value.trim() === "") {
+    alert("Campo vuoto");
+    return;
+  }
+  if (newMoviePlatform.value.trim() === "") {
+    alert("Campo vuoto");
+    return;
+  }
+  movies.push({
+    id: Date.now(),
+    titolo: newMovieTitle.value.trim(),
+    piattaforma: newMoviePlatform.value.trim(),
+    anno: newMovieYear.value.trim(),
+    visto: aggiungiFilm.value.trim() === "watched",
+  });
+  formMovie.reset();
+  render();
+});
 
 /* INTERAZIONI BASE — eliminare, modificare, contare
    - Elimina: filter per id, render(). Event delegation sul container.
@@ -226,6 +180,18 @@ render();
    I tre si compongono dentro render() in fila.
 */
 
+selectWatched.addEventListener("change", (event) => {
+  render();
+});
+
+selectOrder.addEventListener("change", (event) => {
+  render();
+});
+
+inputSearch.addEventListener("input", (event) => {
+  render();
+});
+
 /* SCRIVI QUI LA TUA RISPOSTA */
 
 /* NOTIFICHE TEMPORANEE
@@ -241,6 +207,17 @@ render();
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+
+const darkModeButton = document.querySelector("#darkModeButton");
+
+darkModeButton.addEventListener("click", (event) => {
+  const temaScuro = document.body.classList.toggle("scuro");
+  if (temaScuro) {
+    darkModeButton.textContent = "Tema chiaro";
+  } else {
+    darkModeButton.textContent = "Tema scuro";
+  }
+});
 
 /* PERSISTENZA — localStorage (cerca tu su MDN)
    - In fondo a render(), salva lo stato:
