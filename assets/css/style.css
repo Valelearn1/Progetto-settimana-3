@@ -14,8 +14,19 @@ body {
   background: #f8e0be;
 }
 
+.scuro {
+  background: #111;
+  color: #f8e0be;
+}
+
 .hero {
   background-color: rgb(30, 30, 93);
+  display: inline-block;
+  width: 100%;
+}
+
+.divHero {
+  display: inline-block;
 }
 
 h1 {
@@ -29,14 +40,16 @@ h5 {
   padding-left: 64px;
 }
 
-.darkModeButton {
+#darkModeButton {
   display: inline-block;
   color: white;
   font-family: inherit;
   cursor: pointer;
-  border: #fff;
+  border: 0.6px solid #fff;
+  border-radius: 5px;
+  width: 128px;
+  height: 48px;
   background: none;
-  padding: 25px;
 }
 
 main {

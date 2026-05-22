@@ -20,47 +20,58 @@ REGOLE
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
-const film = [
+let movies = [
   {
     id: 1,
-    titolo: "AAAA",
+    titolo: "Friends",
     piattaforma: "Netflix",
-    anno: "1980",
+    anno: "1994",
     visto: true,
   },
   {
     id: 2,
-    titolo: "BBB",
+    titolo: "Cattivissimo me 2",
     piattaforma: "Disney",
-    anno: "2010",
+    anno: "2013",
     visto: false,
   },
   {
     id: 3,
-    titolo: "CCC",
+    titolo: "Lol",
     piattaforma: "Amazon",
     anno: "2023",
     visto: false,
   },
   {
     id: 4,
-    titolo: "DDDD",
+    titolo: "Cobra Kai",
     piattaforma: "Netflix",
-    anno: "2012",
+    anno: "2018",
     visto: true,
   },
   {
     id: 5,
-    titolo: "EEEE",
+    titolo: "Titanic",
     piattaforma: "Netflix",
-    anno: "1998",
+    anno: "1997",
     visto: true,
   },
 ];
 
-let filtroVisto = " "; // variabile con valore corrispondente al valore di default della select
-let ordineAnno = " ";
-let cerca = ""; // variabile con stringa vuota
+let filtroVisto = "";
+let ordineAnno = "";
+let cerca = "";
+
+const darkModeButton = document.querySelector("#darkModeButton");
+
+darkModeButton.addEventListener("click", (event) => {
+  const temaScuro = document.body.classList.toggle("scuro");
+  if (temaScuro) {
+    darkModeButton.textContent = "Tema chiaro";
+  } else {
+    darkModeButton.textContent = "Tema scuro";
+  }
+});
 
 /* RENDER()
    Una sola funzione che ridipinge la lista. A ogni chiamata:
@@ -74,33 +85,93 @@ let cerca = ""; // variabile con stringa vuota
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
-const listaFilm = document.getElementById("listaFilm");
-
 const render = () => {
-  let risultati = [...film];
-  if (filtroVisto === "visti") {
-    risultati = risultati.filter((f) => f.visto === true);
-  } else if (filtroVisto === "non visti") {
-    risultati = risultati.filter((f) => f.visto === false);
-  }
-  risultati = risultati.filter((f) =>
-    f.titolo.toLowerCase().includes(cerca.toLowerCase()),
-  );
-
-  // per ordinare
-  if (ordineAnno === "crescente") {
-    risultati.sort((a, b) => a.anno - b.anno);
-  } else if (ordineAnno === "decrescente") {
-    risultati.sort((a, b) => b.anno - a.anno);
-  }
-
-  listaFilm.innerHTML = ""; // per svuotare il DOM
-
-  risultati.forEach((f) => {
-   const card = document.createElement("div");
-   card.innerHTML =
+  const cards = document.getElementById("cards");
+  movies.forEach((movie) => {
+    const para = document.createElement("p");
+    para.innerText = movie.titolo;
+    cards.appendChild(para);
   });
 };
+
+render();
+
+// const listaFilm = document.getElementById("listaFilm");
+// const stats = document.getElementById("stats");
+// const notificaDiv = document.getElementById("notifica");
+// const form = document.getElementById("filmForm");
+// const titoloInput = document.getElementById("titolo");
+// const piattaformaInput = document.getElementById("piattaforma");
+// const annoInput = document.getElementById("anno");
+// const categoriaInput = document.getElementById("categoria");
+// const searchInput = document.getElementById("search");
+// const filtroSelect = document.getElementById("filtro");
+// const ordineSelect = document.getElementById("ordine");
+// const darkButton = document.getElementById("darkButton");
+// const exportButton = document.getElementById("exportButton");
+// const importInput = document.getElementById("importInput");
+
+// const render = () => {
+//   let risultati = [...film];
+//   risultati = risultati.filter((f) =>
+//     f.titolo.toLowerCase().includes(cerca.toLowerCase()),
+//   );
+//   if (filtroVisto === "visti") {
+//     risultati = risultati.filter((f) => f.visto === true);
+//   } else if (filtroVisto === "non visti") {
+//     risultati = risultati.filter((f) => f.visto === false);
+//   }
+
+//   // per ordinare
+//   if (ordineAnno === "crescente") {
+//     risultati.sort((a, b) => a.anno - b.anno);
+//   } else if (ordineAnno === "decrescente") {
+//     risultati.sort((a, b) => b.anno - a.anno);
+//   }
+
+//   listaFilm.innerHTML = ""; // per svuotare il DOM
+
+//   risultati.forEach((f) => {
+//     const card = document.createElement("div");
+//     card.innerHTML = `
+//       <h3 class="titolo-film">
+//         ${f.titolo}
+//       </h3>
+
+//       <p>${f.piattaforma}</p>
+
+//       <p>${f.anno}</p>
+
+//       <p>
+//         ${f.visto ? "Visto" : "Non visto"}
+//       </p>
+
+//       <button
+//         class="delete-btn"
+//         data-id="${f.id}"
+//       >
+//         Elimina
+//       </button>
+
+//       <button
+//         class="edit-btn"
+//         data-id="${f.id}"
+//       >
+//         Modifica
+//       </button>`;
+
+//     listaFilm.appendChild(card);
+//   });
+//   const totale = film.length;
+//   const visti = film.filter((f) => f.visto).length;
+//   const nonVisti = film.filter((f) => !f.visto).length;
+
+//   stats.innerHTML = `
+//     <p>Totali: ${totale}</p>
+//     <p>Visti: ${visti}</p>
+//     <p>Non visti: ${nonVisti}</p>
+//   `;
+// };
 
 /* FORM CON VALIDAZIONE
    addEventListener("submit") sul form.
@@ -112,6 +183,32 @@ const render = () => {
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+// const filmForm = document.getElementById("filmForm");
+// const titoloInput = document.getElementById("titolo");
+// const piattaformaInput = document.getElementById("piattaforma");
+// const annoInput = document.getElementById("anno");
+
+// filmForm.addEventListener("submit", (event) => {
+//   event.preventDefault(); // per bloccare il refresh
+//   const titolo = titoloInput.value.trim();
+//   const piattaforma = piattaformaInput.value.trim();
+//   const anno = annoInput.value.trim();
+//   if (!titolo || !piattaforma || !anno) {
+//     alert("Compila tutti i campi");
+//     return;
+//   }
+
+//   film.push({
+//     id: Date.now(),
+//     titolo: titolo,
+//     piattaforma: piattaforma,
+//     anno: anno,
+//     visto: false,
+//   });
+//   filmForm.reset(); // per resettare form
+
+//   render();
+// });
 
 /* INTERAZIONI BASE — eliminare, modificare, contare
    - Elimina: filter per id, render(). Event delegation sul container.
