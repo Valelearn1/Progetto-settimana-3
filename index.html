@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week Project — Settimana III</title>
+    <link
+      rel="icon"
+      href="assets/img/one-piece-icons-by-me-v0-qweam8vkaxv91.webp"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <!-- Titolo dell'app + sottotitolo + button tema chiaro/scuro -->
+      <div class="hero">
+        <div>
+          <h1>Film e Serie TV</h1>
+          <h5>
+            Aggiungi i film e le serie TV che hai visto o che vorresti vedere
+          </h3>
+          <button class="darkModeButton">Tema scuro</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div id="listaFilm"></div>
+      <section class="section">
+        <div>
+          <h4>Aggiungi un film o una serie TV</h4>
+        </div>
+        <div class="titleSection">
+          <input type="text" id="newMovieTitle" placeholder="Titolo" />
+       
+          <input type="text" id="newMovieYear" placeholder="Anno" />
+       
+          <input type="text" id="newMoviePlatform" placeholder="Dove vederlo" />
+        
+          <select>
+            <option value=" "></option>
+            <option value="watch">Da vedere</option>
+            <option value="watched">Visto</option>
+            <option value="started">Iniziato</option>
+            <option value="avoid">Non consigliato</option>
+          </select>
+          </div>
+          
+          <div>
+            <button type="submit" class="addMovieBtn">Aggiungi</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <!-- Ricerca live, filtro (select), ordinamento -->
+        <div>
+          <input
+            type="text"
+            id="searchTitle"
+            placeholder="Cerca per titolo o anno"
+          />
+       
+          <select>
+            <option value=" "></option>
+            <option value="visto">Visto</option>
+            <option value="daVedere">Da vedere</option>
+          </select>
+       
+          <select>
+            <option value=" "></option>
+            <option value="crescente">Anno crescente</option>
+            <option value="decrescente">Anno decrescente</option>
+          </select>
+        </div>
+      </section>
+
+  
+
+      <section class="section counter">
+        <!-- Container che render() ricostruisce a ogni cambio di stato -->
+       
+          <div class="totalMovies">
+            <h4>5</h4>
+            <span>Totale</span>
+          </div>
+          <div class="totalMovies">
+            <h4>3</h4>
+            <span>Visti</span>
+          </div>
+          <div class="totalMovies">
+            <h4>2</h4>
+            <span>Da vedere</v>
+          </div>
+          <div class="progress">
+            <div class="progressBar">
+              <div class="progressFill"></div>
+            </div>
+            <span>Percentuale visti</span>
+          </div>
+      </section>
+
+      <div id="notifica"></div>
+    </main>
+
+    <footer>
+      La tua lista di film e serie TV - Epicode Full Stack AI 2026
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

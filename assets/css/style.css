@@ -1,0 +1,118 @@
+/* CSS reset minimo */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  line-height: 1.5;
+  color: #111;
+  background: #f8e0be;
+}
+
+.hero {
+  background-color: rgb(30, 30, 93);
+}
+
+h1 {
+  color: white;
+  padding-left: 64px;
+  padding-top: 32px;
+}
+
+h5 {
+  color: white;
+  padding-left: 64px;
+}
+
+.darkModeButton {
+  display: inline-block;
+  color: white;
+  font-family: inherit;
+  cursor: pointer;
+  border: #fff;
+  background: none;
+  padding: 25px;
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+}
+
+.section {
+  width: 80%;
+  background-color: white;
+  margin: 20px 64px;
+  padding: 16px;
+  border: grey;
+  border-radius: 5px;
+}
+
+/* .titleSection {
+  width: 100%;
+} */
+
+.addMovieBtn {
+  background-color: rgb(237, 140, 79);
+  color: solid black;
+  padding: 5px 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border-width: 0;
+}
+
+.counter {
+  display: inline-block;
+}
+
+.totalMovies {
+  display: inline-block;
+  width: 10%;
+}
+
+.progress {
+  display: inline-block;
+  width: 65%;
+}
+
+.progressFill {
+  background-color: rgb(237, 140, 79);
+  width: 70%;
+  height: 10px;
+  border-radius: 10px;
+  position: relative;
+  /* transition: 0.3s; */
+}
+
+.progressBar {
+  background-color: rgb(246, 233, 180);
+  width: 100%;
+  height: 10px;
+  border-radius: 10px 0 0 10px;
+}
+
+footer {
+  color: rgb(115, 115, 115);
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 0.8em;
+}
+
+/* button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+} */
+
+/* Notifica nascosta di default */
+#notifica {
+  display: none;
+}
+
+/* Scrivi qui sotto i tuoi stili */
